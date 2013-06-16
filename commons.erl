@@ -5,7 +5,7 @@
 -mode(compile).
 
 %% API
--export([factors/1, is_prime/1]).
+-export([factors/1, is_prime/1, divisableByAny/2]).
 
 
 factors(N) ->
@@ -16,3 +16,12 @@ factors(N) ->
 is_prime(N) ->
         Factors = factors(N),
         lists:all(fun(X) -> X == 1 orelse X == N end, Factors).
+
+divisableByAny(_, []) ->
+        false;
+divisableByAny(N, [Num | _])
+        when N rem Num =:= 0 ->
+        true;
+divisableByAny(N, [Num | Nums])
+        when N rem Num =/= 0 ->
+        divisableByAny(N, Nums).
