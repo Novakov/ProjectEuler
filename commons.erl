@@ -5,7 +5,7 @@
 -mode(compile).
 
 %% API
--export([factors/1, is_prime/1, divisableByAny/2]).
+-export([factors/1, is_prime/1, divisableByAny/2, sumOfDigits/2]).
 
 
 factors(N) ->
@@ -25,3 +25,6 @@ divisableByAny(N, [Num | _])
 divisableByAny(N, [Num | Nums])
         when N rem Num =/= 0 ->
         divisableByAny(N, Nums).
+
+sumOfDigits(X, Acc) when X < 10 -> Acc + X;
+sumOfDigits(X, Acc) -> sumOfDigits(X div 10, Acc + X rem 10).
